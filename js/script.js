@@ -15,6 +15,9 @@ buttonSubmit.addEventListener(`click`, function () {
     let categoryValue = selectCategory.value;
     let imageValue = inputImage.value;
 
+
+    //Why ot create an object to every songle one? 
+    // you needed to create an single object to each item and then push it to a single array.
     let nameOfProduct = {
         name: nameValue,
     };
@@ -37,23 +40,25 @@ buttonSubmit.addEventListener(`click`, function () {
     productImage.push(imageOfProduct);
 
     saveInLocalStorage(productName, productPrice, productCategory, productImage);
+    // Added element to what? need more decriptive name to this method 
+    //addElementToHtml/write to html etc.. 
     addElement(inputProduct.value, inputPrice.value, selectCategory.value, inputImage.value);
-
+    // I would extract this to a function
     inputProduct.value = "";
     inputPrice.value = "";
     inputImage.value = "";
 })
-
+//this saves you only the latest product to the local storage each time.
 function saveInLocalStorage(productName, productPrice, productCategory, productImage) {
     localStorage.setItem(`productName`, JSON.stringify(productName));
     localStorage.setItem(`productPrice`, JSON.stringify(productPrice));
     localStorage.setItem(`productCategory`, JSON.stringify(productCategory));
     localStorage.setItem(`productImage`, JSON.stringify(productImage));
 }
-
+//Amazing!!!
 function addElement(nameValue, priceValue, categoryValue, imageValue) {
     const newTr = document.createElement(`tr`);
-
+    
     const nameTd = document.createElement('td');
     const nameText = document.createTextNode(nameValue);
     nameTd.appendChild(nameText);
@@ -91,10 +96,11 @@ function addElement(nameValue, priceValue, categoryValue, imageValue) {
     const editBtn = document.createElement('button');
     const editBtnText = document.createTextNode(`Edit`);
     editBtn.appendChild(editBtnText);
+    //Aluf!!!
     editBtn.classList.add(`editBtn`);
     editTd.appendChild(editBtn);
     newTr.appendChild(editTd);
-
+    // Amazinggggg!!!!!! 
     editBtn.addEventListener('click', () => {
         const index = Array.from(tableBody.children).indexOf(newTr);
 
@@ -114,6 +120,7 @@ function addElement(nameValue, priceValue, categoryValue, imageValue) {
 
 
 function takeFromLocalStorage() {
+    //NICE! but still, You need to think of another way to store the data.
     productName = JSON.parse(localStorage.getItem(`productName`)) || [];
     productPrice = JSON.parse(localStorage.getItem(`productPrice`)) || [];
     productCategory = JSON.parse(localStorage.getItem(`productCategory`)) || [];
